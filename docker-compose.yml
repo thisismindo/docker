@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  api:
+    container_name: api-service
+    build:
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 4040:4040
+    environment:
+      - debugMode:${debugMode}
+    command: |
+      gunicorn src.wsgi -b 0.0.0.0:4040 --workers 4 --reload
+    volumes:
+      - /src
+      - .:/src

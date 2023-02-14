@@ -1,0 +1,1 @@
+VERSION: str = 'v1'
