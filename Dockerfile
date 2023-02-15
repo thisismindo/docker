@@ -10,11 +10,10 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN python3 get-pip.py
 
 COPY src/ .
+COPY entrypoint /src/
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 EXPOSE 4040
 
-ARG debugMode
-
-ENV debugMode=$debugMode
+ENTRYPOINT [ "/src/entrypoint" ]
